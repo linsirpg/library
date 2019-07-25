@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+  //  () 分组
+  var str= 'i am lqylqy'
+  var patt = /lqy/
+  console.log(str.match(patt))
+  console.log(patt.exec(str))
+
+  var str= 'i am lqy1lqy'
+  var patt = /lqy{2}/ // lqyy
+  console.log(str.match(patt)) //null
+  console.log(patt.exec(str)) // null
+
+  var str= 'i am lqylqy'
+  var patt = /(lqy){2}/ // 查找两个(lqy)
+  console.log(str.match(patt)) //null
+  console.log(patt.exec(str)) // null
+
+  // 指定选择项 ｜ 或
+
+  var patt = /ab|cd|ef/g //ab 或 cd 或 ef
+  var str  = 'ef1212ab'
+  console.log(patt.exec(str))
+</script>

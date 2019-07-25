@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则表达式-元字符</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  // \ 做为转意，即通常在"\"后面的字符不按原来意义解释，如/b/匹配字符"b"，当b前面加了反斜杆后/\b/，转意为匹配一个单词的边界。
+  //  \d 匹配一个数字字符 => [0,9]
+  //  \D 匹配非数字字符 => [^0,9]
+  // var patt = /\d/ 
+  // console.log(patt.test('2')) //true
+  // console.log(patt.test('233dd')) //true
+  // console.log(patt.test('dd')) // false
+
+  // var patt = /\D/
+  // console.log(patt.test('2')) //false
+  // console.log(patt.test('233dd')) //true
+  // console.log(patt.test('dd')) // true
+
+  // \w 匹配一个单词字符 [a-zA-Z0-9]
+  // \W 匹配一个单词字符 [^a-zA-Z0-9]
+
+  var patt = /\w/
+  console.log(patt.test('2')) //true
+  console.log(patt.test('.')) //false
+  console.log(patt.test('/')) //false
+
+  var patt = /\W/
+  console.log(patt.test('2')) //false
+  console.log(patt.test('.')) //true
+  console.log(patt.test('/')) //true
+
+  // \b 单词边界
+  var str = '哦d322d啊1ssd.2aa你dd/4dd好也一样d3dccdd4d4ff2发2' //[a-zA-Z0-9]为一种边界 中文为一种边界  特殊字符为一种边界
+  var patt = /\b\d/g // 匹配[0,9]开始的边界 
+  console.log(patt.test(str))
+  console.log(str.match(patt)) //["1", "2", "4", "2"] 
+
+  // var patt =  /\d\b/g  // 匹配[0,9]结束的边界 
+  // console.log(patt.test(str))
+  // console.log(str.match(patt)) //["2", "2"]
+
+  // var patt =  /\b\D/g  // 匹配[^0,9]开始的边界 
+  // console.log(patt.test(str))
+  // console.log(str.match(patt)) //["d", "啊", ".", "你", "d", "/", "好", "d", "发"]
+
+  // \B 非单词边界
+  //   var str = '哦d322d啊1ssd.2aa你dd/4dd好也一样d3dccdd4d4ff2发2' //[a-zA-Z0-9]为一种边界
+  // var patt =  /\B\d/g  // 匹配[0,9]的边界 
+  // console.log(patt.test(str))
+  // console.log(str.match(patt)) //["3", "2", "2", "3", "4", "4", "2"] 与上面的相反
+
+  // var patt =  /\B\D/g  // 匹配[^0,9]的边界 
+  // console.log(patt.test(str))
+  // console.log(str.match(patt)) //["哦", "d", "s", "s", "d", "a", "a", "d", "d", "d", "也", "一", "样", "d", "c", "c", "d", "d", "d", "f", "f"] 与上面的相反
+
+
+
+  // // \s 查找空白字符
+  // var str = '1 bd ef'
+  // var patt = /\s/;
+  // console.log(patt.test(str))
+  // console.log(str.replace(patt,',')) //1,bd ef
+
+  // var str = '1 bd ef'
+  // var patt = /\s/g;
+  // console.log(patt.test(str))
+  // console.log(str.replace(patt,',')) //1,bd ef
+
+  // // \S 查找非空白字符
+  // var str = '._1b!#/de- f'
+  // var patt = /\S/;
+  // console.log(patt.test(str))
+  // console.log(str.replace(patt,',')) //,_1b!#/de- f
+
+  // // \S 查找非空白字符
+  // var str = '._1b!#/de- f'
+  // var patt = /\S/g;
+  // console.log(patt.test(str))
+  // console.log(str.replace(patt,',')) //,,,,,,,,,, ,
+
+  // js中的特殊字符
+  // \'	单引号
+  // \"	双引号
+  // \&	和号
+  // \\	反斜杠
+  // \n	换行符
+  // \r	回车符
+  // \t	制表符
+  // \b	退格符
+  // \f 换页符
+
+  // \n 查找换行符 \r	查找回车  \t	查找制表符 \f	查找换页符。
+  // var str = 'aefe\nfefefef'
+  // var patt = /\n/
+  // console.log(patt.test(str)) //true
+  // console.log(patt.exec(str))
+  // console.log(str.replace(patt, '11'))
+
+  //  \0 查找null字符串
+
+  var patt = /\0/
+  var str = "I love antzone \0,and you";
+  console.log(str)
+  console.log(patt.test(str))
+</script>

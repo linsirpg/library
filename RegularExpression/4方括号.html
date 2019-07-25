@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则表达式- 方括号</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // []方括号用于查找某个范围内的字符  [] 一个括号代表一个位置一个字符
+// [abc]	查找方括号之间的任何字符。
+// [^abc]	查找任何不在方括号之间的字符。
+// [0-9]	查找任何从 0 至 9 的数字。
+// [a-z]	查找任何从小写 a 到小写 z 的字符。
+// [A-Z]	查找任何从大写 A 到大写 Z 的字符。
+// [A-z]	查找任何从大写 A 到小写 z 的字符。
+// [adgk]	查找给定集合内的任何字符。
+// [^adgk]	查找给定集合外的任何字符。
+
+
+  // var patt = /[abc]/ // a或b或c
+  // var str = 'abcdefg'
+  // console.log(patt.test('a')) //true
+  // console.log(patt.test('b')) //true
+  // console.log(patt.test('c')) //true
+  // console.log(patt.test('cd')) //true
+  // console.log(patt.test('c')) //true
+  // console.log(patt.test('ede')) //false
+  // console.log(str.replace(patt,'1')) //1bcdefg
+
+  // var patt = /[abc]/g // a或b或c
+  // var str = 'abcdefg'
+  // console.log(patt.test('a')) //true
+  // console.log(patt.test('b')) //true
+  // console.log(patt.test('c')) //true
+  // console.log(patt.test('cd')) //true
+  // console.log(patt.test('c')) //true
+  // console.log(patt.test('ede')) //false
+  // console.log(str.replace(patt,'1')) //111defg
+
+
+  
+  // var patt = /[^abc]/ // !a 或 !b 或 !c 存在除了 a b c 的其他字符便为真 相反全为abc内的字符即为假
+  // var str = 'abcdefg'
+  // console.log(patt.test('ade')) //true
+  // console.log(patt.test('ab')) //false
+  // console.log(patt.test('abd')) //true
+  // console.log(str.replace(patt,'1')) //abc1efg
+
+  // var patt = /[^abc]/g // !a 或 !b 或 !c 存在除了 a b c 的其他字符便为真 相反全为abc内的字符即为假
+  // var str = 'abcdefg'
+  // console.log(patt.test('ade')) //true
+  // console.log(patt.test('ab')) //false
+  // console.log(patt.test('abd')) //true
+  // console.log(str.replace(patt,'1')) /abc1111
+
+
+  
+</script>

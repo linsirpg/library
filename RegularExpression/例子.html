@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>例子</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // "^\\d+$"　　//非负整数（正整数 + 0） 
+  // "^[0-9]*[1-9][0-9]*$"　　//正整数 
+  // "^((-\\d+)|(0+))$"　　//非正整数（负整数 + 0） 
+  // "^-[0-9]*[1-9][0-9]*$"　　//负整数 
+  // "^-?\\d+$"　　　　//整数 
+  // "^\\d+(\\.\\d+)?$"　　//非负浮点数（正浮点数 + 0） 
+  // "^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$"　　//正浮点数
+  // "^((-\\d+(\\.\\d+)?)|(0+(\\.0+)?))$"　　//非正浮点数（负浮点数 + 0） 
+  // "^(-(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*)))$"　　//负浮点数
+  // "^(-?\\d+)(\\.\\d+)?$"　　//浮点数 
+  // "^[A-Za-z]+$"　　//由26个英文字母组成的字符串 
+  // "^[A-Z]+$"　　//由26个英文字母的大写组成的字符串 
+  // "^[a-z]+$"　　//由26个英文字母的小写组成的字符串 
+  // "^[A-Za-z0-9]+$"　　//由数字和26个英文字母组成的字符串 
+  // "^\\w+$"　　//由数字、26个英文字母或者下划线组成的字符串 
+  // "^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$"　　　　//email地址 
+  // "^[a-zA-z]+://(\\w+(-\\w+)*)(\\.(\\w+(-\\w+)*))*(\\?\\S*)?$"　　//url 
+
+  //校验登录名：只能输入5-20个以字母开头、可带数字、“_”、“.”的字串 
+
+  var patt = /^[a-zA-Z]{1}[a-zA-z._0-9]{4,19}$/ // => /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/
+
+  console.log(patt.test('d12_.3fw12.312d'))
+
+  //校验用户姓名：只能输入1-30个以字母开头的字串
+
+  var patt = /^[a-zA-Z]{1,30}$/
+
+  // 只能输入6-20个字母、数字、下划线 
+
+  var patt = /^[a-zA-Z0-9_]{1,20}$/
+
+  // 去除空格 \s
+  var patt = /(^\s*)|(\s*$)/g // 开头与结尾
+  var patt = /(^\s*)/g // 开头
+  var patt = /(\s*$)/g // 结尾
+
+  // // 去除空格  
+  // str.replace(/\s/g, '')
+  // //只能输入数字
+  // str.replace(/[^0-9]/g, '')
+  // //只能输入英文
+  // str.replace(/[a-zA-Z]/g, '')
+  // //只能输入英文跟数字
+  // str.replace(/[a-zA-Z0-9]/g, '')
+
+  var str = `<br/>您好，非常好，很开心认识你
+<br/><a target=_blank href="www.baidu.com">百度一下</a>百度才知道
+<br/><a target=_blank href="/view/fafa.htm">发发</ a>最佳帅哥
+<br/><a target=_blank href="/view/lili.htm">丽丽</ a>最佳美女
+<br/>`
+  // (?<=(href=")) 表示 匹配以(href=")开头的字符串，并且捕获(存储)到分组中 
+  // (?=(">)) 表示 匹配以(">)结尾的字符串，并且捕获(存储)到分组中
+  // (?!(">)) 表示 匹配不以以(">)结尾的字符串，并且捕获(存储)到分组中
+  var patt = /(?<=(">)).{1,200}(?=(<\/))/g
+  var patt1 = /(?!(<br\/>)).{1,200}/g
+  var patt2 = /(?!=(<br\/>)).{1,200}/g
+  console.log(str.match(patt))
+  console.log(str.match(patt1))
+  console.log(str.match(patt2))
+
+  // 重复量词  * +  实现贪婪匹配模式的核心是正则表达式重复量词，正是由于它的存在，才有贪婪的可能。 
+  var str3 = "haaaaaaaaaaaaaaaabagddaaaaaaaaaaaab"; //  如果在重复量词的右边不添加问号(?)，默认都是采用贪婪匹配。 /a.*n/ 会匹配以字符"a"开头，以"n"结尾的字符串，正则中间是采用重复量词星号（*）。
+  // 所谓的贪婪匹配就是在符合规则的条件下，正则表达式尽可能多的匹配内容。
+  console.log(str3.match(/h.*b/)); //haaaaaaaaaaaaaaaabagddaaaaaaaaaaaab
+  console.log(str3.match(/h.+b/)); //haaaaaaaaaaaaaaaabagddaaaaaaaaaaaab
+
+  var str = "<div><ul><li></li></ul></div>";
+  console.log(str.match(/(<.*>)(<.*>)(<.*>)/)); // 每个分组会给之后的分钟保留最后的代码 ["<div><ul><li></li></ul></div>", "<div><ul><li></li>", "</ul>", "</div>", index: 0, input: "<div><ul><li></li></ul></div>", groups: undefined]
+  // 惰性匹配模式：
+  console.log(str3.match(/h.*?b/)); //haaaaaaaaaaaaaaaab 在匹配两次星号（*）的前面添加一个问号（?）即可实现惰性匹配模式。
+  console.log(str3.match(/h.+?b/)); //haaaaaaaaaaaaaaaab 在匹配两次星号（*）的前面添加一个问号（?）即可实现惰性匹配模式。
+  console.log(str3.match(/ha+/)); //haaaaaaaaaaaaaaaa 
+  console.log(str3.match(/ha+?/)); //ha
+  var str = "hello123back, hello456back";
+  console.log(str.match(/hello(?!01).*?back/g), '1'); // hello123back
+
+  console.log((str.match(/(hello).*/)));
+  console.log((str.match(/(?:hello).*/)));
+  var str2 = '<input type="text" id="xxx" name="xxx" value="xxx" /><input type="hidden" id="xxx" name="xxx" value="xxx" />';
+  console.log(str2.match(/<input[^>]*?hidden.*?\/>/));
+
+  var patt = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/
+  var patt = /^[0-9A-Za-z]{6,16}$/
+  console.log(patt.exec('w1222222'))
+
+  var str = "2019";
+  //以数字开头的字符串 判断后匹配  2 为数字 所以匹配 019
+  console.log(str.match(/(?<=(\d+))(\d+)$/g)); // 019
+
+  // var str = "antzone is good";
+  // console.log(str.match(/one(?!\/s)/g));
+  // console.log(str.match(/(?!t)one/g));
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则表达式</title>
+</head>
+
+<body>
+</body>
+
+</html>
+
+<script>
+  //语法  
+  // 1. /正则表达式主体/修饰符(可选) 
+  // 2.  new RegExp(pattern,modifiers);
+
+  //字符串方法  string.search() string.replace()  string.match()
+
+
+  // 1 string.search() 用于检索字符串中的指定的子字符串，或检索与正则表达式相匹配的子字符串，返回字符串的起始位置
+  //a 使用正则表达式
+
+  var str = 'learning regularExpression now regularExpression';
+
+  var n = str.search(/regularExpression/i);
+
+  console.log(n);
+
+  //b 使用字符串
+
+  var str1 = 'learning regularExpression now regularExpression';
+
+  var n1 = str.search('regularExpression');
+
+  console.log(n1);
+
+  // 2 string.replace('替换字符串'/正则表达式， '被替换的字符串') 用户在字符串中用一些字符串替换另外一些字符串 或 替换一个正则表达式匹配的子字符串  返回替换后的字符串
+
+  // a 使用字符串
+
+  var str2 = 'learning regularExpression now regularExpression';
+
+  var n2 = str.replace('learning', 'study');
+
+  console.log(n2);
+
+  // a 使用正则表达式
+
+  var str3 = 'learning regularExpression now1 regularExpression learning learning learning learning LEARNING';
+
+  var n3 = str3.replace(/learning/ig, 'studyIng'); //修饰符 i 不区分大小写   g 全局匹配
+
+  console.log(n3);
+
+  //3 string.match(正则表达式对象或者正则表达式直接量)  方法可在字符串内查找一个或多个与指定正则表达式匹配的子字符串。方法的返回值是存放着匹配结果的数组，但数组元素并不一定全都是匹配结果
+
+  var str = "本站url地址是www.softwhy.com";
+
+  var reg = /why/;
+
+  console.log(str.match(reg), 'match');
+
+  // 使用 RegExp 对象
+
+  // RegExp.test(检测的字符串) 检测一个字符串是否匹配某个正则表达式，如果字符串中含有匹配的文本，则返回true，否则返回false
+  // RegExp.exec(检测的字符串) 检索字符串中与正则表达式所匹配的字符，该函数返回一个数据，存放匹配的结果。如果未能找到匹配，则返回null。
+
+  // RegExp.test()
+  var patt = /lin/;
+
+  var result = patt.test('lin lin lin lin');
+
+  console.log(result); //true
+
+  var result1 = patt.test('chen chen chen chen ');
+
+  console.log(result1)
+  // false
+
+  // RegExp.exec()
+
+
+  var patt1 = /lin/g;
+
+  var reuslt2 = patt.exec('huang lin lin lin lin lin chen chen');
+
+  console.log(reuslt2);
+
+  // ["lin", undefined, 6, "huang lin lin lin lin lin chen chen"] 返回一个数组
+  // [0(对应的字符串), groups, index(所在的索引), input(检测的字符串)] [0: "lin" ,groups: undefined, index: 6, input: "huang lin lin lin lin lin chen chen"] 
+  var result3 = patt1.exec('zhao qian sun li');
+
+  console.log(result3); //返回null
+</script>
